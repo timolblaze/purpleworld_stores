@@ -1,0 +1,18 @@
+.darkBg{
+    background-color: #0A0A0A;
+    color: #f4f4f4;
+    height: 30rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2.5rem;
+}
+.darkBg h2{
+    font-size: 5rem;
+    font-weight: 400;
+}
+.darkBg p, .darkBg a{
+    text-transform: uppercase;
+    font-weight: 300;
+}
