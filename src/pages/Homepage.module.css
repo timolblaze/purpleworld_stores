@@ -1,0 +1,61 @@
+.hero{
+    padding: 5rem 10rem;
+}
+.gridSection{
+    width: fit-content;
+    margin: 0 auto;
+    /* display: grid;
+    grid-template-columns: repeat(3,500px);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 0; */
+    display: flex;
+    gap: 5rem;
+}
+.gridSection > div:nth-of-type(2){
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+.productCard{
+    position: relative;
+    height: 620px;
+    width: 600px;
+    background-image: url('../assets/back2school.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 5rem 3rem;
+    display: flex;
+    flex-direction: column;
+}
+.productCard h3{
+    font-size: 3rem;
+    font-weight: 300;
+}
+.productCard p{
+    font-size: 1.5rem;
+    font-weight: 600;
+    /* margin-top: .5rem; */
+}
+.productCard a{
+    color: #9966CB;
+    text-transform: uppercase;
+    margin-top: 1rem;
+}
+.productCard::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: #000;
+    opacity: 0.15;
+}
+.productCard.small{
+    height: 300px;
+    width: 300px;
+}
+.productCard.long{
+    width: 300px;
+}
