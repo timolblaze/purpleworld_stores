@@ -2,6 +2,7 @@ import React from 'react'
 import Navbar from '../components/Navbar'
 import DarkBG from '../components/DarkBG'
 import FormComponent from '../components/FormComponent'
+import Footer from '../components/Footer'
 
 export default function Login() {
   return (
@@ -11,7 +12,7 @@ export default function Login() {
             <p>Home  /  My Account</p>
         </DarkBG>
         <FormComponent />
-        
+        <Footer />
     </div>
   )
 }
