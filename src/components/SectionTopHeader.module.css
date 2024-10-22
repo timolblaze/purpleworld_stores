@@ -1,0 +1,20 @@
+.topHeader{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 5px;
+}
+.topHeader h3{
+    font-size: 2rem;
+    margin-right: 5px;
+    text-transform: uppercase;
+    border-bottom: 4px solid #9966CB;
+}
+.topHeader p{
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 1.4rem;
+}
+.topHeader p.active{
+    color: #9966CB;
+}

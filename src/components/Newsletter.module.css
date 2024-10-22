@@ -1,0 +1,45 @@
+.newsletter{
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    padding: 4rem 10rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.newsletter h3{
+    text-transform: uppercase;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+.newsletter p{
+    font-size: 1.6rem;
+}
+.emailForm{
+    border: none;
+    /* border: 2px solid green; */
+    width: 35%;
+}
+.emailForm > input{
+    display: inline-block;
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.6rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 4rem;
+}
+.emailForm > input:focus{
+    outline: 1px solid var(--purple);
+}
+.emailForm > button{
+    background-color: var(--purple);
+    border: none;
+    border-radius: 5px;
+    padding: 1rem 2rem;
+    font-size: 1.6rem;
+    text-transform: uppercase;
+    color: #fff;
+    margin-top: 2rem;
+}
