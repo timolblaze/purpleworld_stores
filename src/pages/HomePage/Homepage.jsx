@@ -1,11 +1,20 @@
 import React from "react";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
 import styles from "./Homepage.module.css";
-import BabyMeal from "../assets/nutribom.png";
-import B2school from "../assets/back2school.png";
-import Nivea from "../assets/nivea.png";
-import Utensils from "../assets/utensils.png";
+import BabyMeal from "../../assets/nutribom.png";
+import B2school from "../../assets/back2school.png";
+import Nivea from "../../assets/nivea.png";
+import Utensils from "../../assets/utensils.png";
+import Ceralac from "../../assets/ceralac.png";
+import Coke from "../../assets/drink.png";
+import Diaper from "../../assets/smileBaby.png";
+import Coffee from "../../assets/coffee.png";
+import SectionTopHeader from "../../components/SectionTopHeader";
+import ProductCard from "../../components/ProductCard";
+import Kellogs from "../../assets/kellogs.png";
+import SalesComponent from "../../components/SalesComponent";
+import Newsletter from "../../components/Newsletter";
 
 export default function Homepage() {
   return (
@@ -41,34 +50,108 @@ export default function Homepage() {
       </section>
 
       <section className={styles.hotSection}>
-        <div className={styles.topHeader}>
-          <h3>New Arrivals</h3>
-          <p>Groceries</p>
+        <SectionTopHeader heading="New Arrivals">
+          <p className={styles.active}>Groceries</p>
           <p>Drinks</p>
           <p>Baby Food </p>
           <p>Skin care</p>
           <p>Home & Kitchen</p>
-        </div>
+        </SectionTopHeader>
 
         <div className={styles.bannerSection}>
           <div>
             <div>
-              <img src="" alt="" />
+              <img src={Ceralac} alt="Ceralac" />
             </div>
             <div>
-              <img src="" alt="" />
+              <img src={Diaper} alt="Diaper wears" />
             </div>
           </div>
           <div>
             <div>
-              <img src="" alt="" />
+              <img src={Coke} alt="Coca Cola" />
             </div>
             <div>
-              <img src="" alt="" />
+              <img src={Coffee} alt="Coffee drink" />
             </div>
           </div>
         </div>
       </section>
+
+      <SalesComponent heading="Best of the week">
+        <ProductCard
+          productName="Kellogs Cereal"
+          price="$5.84"
+          category="cereals"
+          imgUrl={Kellogs}
+          alt="Hot"
+        />
+        <ProductCard
+          productName="Kellogs Cereal"
+          price="$5.84"
+          category="cereals"
+          imgUrl={Kellogs}
+          alt="Hot"
+        />
+        <ProductCard
+          productName="Kellogs Cereal"
+          price="$5.84"
+          category="cereals"
+          imgUrl={Kellogs}
+        />
+        <ProductCard
+          productName="Kellogs Cereal"
+          price="$5.84"
+          category="cereals"
+          imgUrl={Kellogs}
+          alt="Hot"
+        />
+        <ProductCard
+          productName="Kellogs Cereal"
+          price="$5.84"
+          category="cereals"
+          imgUrl={Kellogs}
+        />
+      </SalesComponent>
+
+      <SalesComponent heading="Popular In Category">
+        <ProductCard
+          productName="Kellogs Cereal"
+          price="$5.84"
+          category="cereals"
+          imgUrl={Kellogs}
+          alt="Hot"
+        />
+        <ProductCard
+          productName="Kellogs Cereal"
+          price="$5.84"
+          category="cereals"
+          imgUrl={Kellogs}
+          alt="Hot"
+        />
+        <ProductCard
+          productName="Kellogs Cereal"
+          price="$5.84"
+          category="cereals"
+          imgUrl={Kellogs}
+        />
+        <ProductCard
+          productName="Kellogs Cereal"
+          price="$5.84"
+          category="cereals"
+          imgUrl={Kellogs}
+          alt="Hot"
+        />
+        <ProductCard
+          productName="Kellogs Cereal"
+          price="$5.84"
+          category="cereals"
+          imgUrl={Kellogs}
+        />
+      </SalesComponent>
+
+      <Newsletter />
+
       <Footer />
     </>
   );

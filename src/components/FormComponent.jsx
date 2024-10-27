@@ -3,7 +3,7 @@ import styles from "./FormComponent.module.css";
 export default function FormComponent() {
   return (
     <div className={styles.container}>
-      <form action="">
+      <form className={styles.regForm}>
         <h3>LOGIN</h3>
 
         <div className={styles.inputControl}>

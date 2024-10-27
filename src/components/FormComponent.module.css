@@ -3,7 +3,7 @@
     padding: 8rem 10rem;
     font-size: 1.7rem;
 }
-form{
+.regForm{
     border-right: 1px solid #ccc;
     padding: 4rem 5rem;
     flex: 1;
@@ -11,12 +11,12 @@ form{
     flex-direction: column;
     gap: 5rem;
 }
-form h3, .registerDiv h3{
+.regForm h3, .registerDiv h3{
     font-size: 3rem;
     font-weight: 500;
 }
-form label{
-    color: #444;
+.regForm label{
+    color: #777;
 }
 .inputControl{
     display: flex;
@@ -32,7 +32,7 @@ form label{
 .inputControl input:focus{
     outline: none;
 }
-form button{
+.regForm button{
     background: #9966CB;
     color: #f4f4f4;
     font-size: 1.7rem;
