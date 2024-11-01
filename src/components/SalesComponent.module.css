@@ -4,6 +4,9 @@
 }
 .hotSales > div:nth-of-type(2){
     display: flex;
-    gap: 1rem;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 5rem;
     margin-top: 5rem;
 }

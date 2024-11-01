@@ -24,7 +24,19 @@ header{
     gap: 4rem;
     font-weight: 500;
 }
-.cartDiv a{
+.cartDiv > a:link{
+    color: var(--purple);
+}
+.cartDiv > a:visited{
+    color: var(--purple);
+}
+.cartDiv > a:hover{
+    color: #551a8b;
+}
+.cartDiv > p{
+    color: #551a8b;
+}
+.cartDiv > a{
     text-transform: uppercase;
     font-weight: bold;
 }

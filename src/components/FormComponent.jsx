@@ -1,16 +1,40 @@
+import { useState } from "react";
 import styles from "./FormComponent.module.css";
 
 export default function FormComponent() {
+  const [register, setRegister] = useState(false)
   return (
+    
     <div className={styles.container}>
-      <form className={styles.regForm}>
-        <h3>LOGIN</h3>
+      {register ? (
+        <form className={styles.regForm}>
+        <h3>REGISTER</h3>
 
+        <div className={`${styles.inputControl} ${styles.names}`}>
+          <div>
+            <label>
+            First Name<sup>*</sup>
+            </label>
+            <input type="text" required name="emailuser" />
+          </div>
+          <div>
+            <label>
+            Last Name<sup>*</sup>
+            </label>
+            <input type="text" required name="emailuser" />
+          </div>
+        </div>
         <div className={styles.inputControl}>
           <label>
-            Username or email adddres <sup>*</sup>
+            Phone Number <sup>*</sup>
           </label>
           <input type="text" required name="emailuser" />
+        </div>
+        <div className={styles.inputControl}>
+          <label>
+            Email adddres <sup>*</sup>
+          </label>
+          <input type="email" required name="emailuser" />
         </div>
 
         <div className={styles.inputControl}>
@@ -20,7 +44,7 @@ export default function FormComponent() {
           <input type="password" required name="password" />
         </div>
 
-        <button type="submit"> Login</button>
+        <button type="submit"> Create Account</button>
 
         <div className={styles.recoverDiv}>
           <div className={styles.remPassword}>
@@ -31,6 +55,40 @@ export default function FormComponent() {
           <a href="3">Lost your password?</a>
         </div>
       </form>
+      ) : ( 
+        <> 
+        <form className={styles.regForm}>
+          <h3>LOGIN</h3>
+  
+          <div className={styles.inputControl}>
+            <label>
+              Email adddres <sup>*</sup>
+            </label>
+            <input type="email" required name="emailuser" />
+          </div>
+  
+          <div className={styles.inputControl}>
+            <label>
+              Password <sup>*</sup>
+            </label>
+            <input type="password" required name="password" />
+          </div>
+  
+          <button type="submit"> Login</button>
+  
+          <div className={styles.recoverDiv}>
+            <div className={styles.remPassword}>
+              <input type="checkbox" name="remPword" />
+              <p>Remember Password</p>
+            </div>
+  
+            <a href="3">Lost your password?</a>
+          </div>
+        </form>
+        
+      </>
+    )}
+
       <div className={styles.registerDiv}>
         <h3> REGISTER </h3>
         <div className={styles.paraBlock}>
@@ -50,7 +108,7 @@ export default function FormComponent() {
           </p>
         </div>
 
-        <button>Register</button>
+        <button onClick={() => setRegister(!register)}>{register ? 'Login' : 'Register'}</button>
       </div>
     </div>
   );

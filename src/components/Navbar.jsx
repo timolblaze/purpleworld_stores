@@ -20,8 +20,8 @@ export default function Navbar() {
             <div className={styles.cartDiv}>
                 <Link to='/login'>Login / Register</Link>
                 <Link to='/shop'>Shop</Link>
-                <HiOutlineShoppingBag size={42}/>
-                <p className={styles.price}> ₦0.00</p>
+                <Link to='/cart'> <HiOutlineShoppingBag size={42}/> </Link>
+                <p className={styles.price}> $0.00</p>
             </div>
         </header>
         <div className={styles.categoryDiv} />

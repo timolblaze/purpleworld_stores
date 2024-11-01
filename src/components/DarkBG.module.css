@@ -16,3 +16,7 @@
     text-transform: uppercase;
     font-weight: 300;
 }
+.darkBg > div{
+    display: flex;
+    gap: 2rem;
+}

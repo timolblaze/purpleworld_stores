@@ -1,21 +1,19 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import styles from "./ProductDetails.module.css";
 import Kellogs from "../../assets/kellogs.png";
 import SectionTopHeader from "../../components/SectionTopHeader";
 import ProductCard from "../../components/ProductCard";
+import { useParams } from "react-router-dom";
+import { ProductsContext } from "../../contexts/ProductsContext";
 
 export default function ProductDetails() {
-  const [quantity, setQuantity] = useState(1);
+  const { productId } = useParams();
+  const {products} = useContext(ProductsContext)
 
-  function addQuantity() {
-    setQuantity((prev) => prev + 1);
-  }
-  function reduceQuantity() {
-    if(quantity > 1) setQuantity((prev) => prev - 1);
-  }
-
+  const product = products.find(product => product.id === productId)
+  
   return (
     <>
       <Navbar />
@@ -25,7 +23,7 @@ export default function ProductDetails() {
         </div>
         <div className={styles.productText}>
           <h4>Groceries</h4>
-          <h2>Kellogs Cornflakes Cereal</h2>
+          <h2>{product.title}</h2>
           <p>$12.80</p>
 
           <div className={styles.productDetails}>
@@ -41,11 +39,6 @@ export default function ProductDetails() {
           </div>
 
           <div className={styles.cartDiv}>
-            <div>
-              <p onClick={addQuantity}>+</p>
-              <p>{quantity}</p>
-              <p onClick={reduceQuantity}>-</p>
-            </div>
             <button>Add to Cart </button>
           </div>
         </div>

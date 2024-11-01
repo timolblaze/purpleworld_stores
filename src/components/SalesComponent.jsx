@@ -8,10 +8,7 @@ export default function SalesComponent({heading, children}) {
     <section className={styles.hotSales}>
         <SectionTopHeader heading={heading}>
         <p className={styles.active}>Groceries</p>
-          <p>Drinks</p>
-          <p>Baby Food </p>
           <p>Skin care</p>
-          <p>Home & Kitchen</p>
         </SectionTopHeader>
 
         <div>

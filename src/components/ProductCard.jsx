@@ -12,12 +12,12 @@ export default function ProductCard({
     <div className={styles.card}>
       {alt && <p className={styles.alt}>{alt}</p>}
       <div>
-        <img src={imgUrl} alt="Product Item" />
+        <img src={imgUrl} alt={productName} />
       </div>
       <div>
         <p>{productName}</p>
         <h4>{category}</h4>
-        <p>{price}</p>
+        <p>${price}</p>
       </div>
     </div>
   );
