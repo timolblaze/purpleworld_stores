@@ -22,7 +22,10 @@ header{
     justify-content: space-between;
     align-items: center;
     gap: 4rem;
-    font-weight: 500;
+    font-weight: 600;
+    font-size: 2rem;
+    text-transform: uppercase;
+    color: #9966CB;
 }
 .cartDiv > a:link{
     color: var(--purple);

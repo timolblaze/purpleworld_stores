@@ -1,21 +1,12 @@
 import React, { useState, useEffect, useLayoutEffect } from "react";
-import axios from "axios";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
-import styles from "./Homepage.module.css";
-import BabyMeal from "../../assets/nutribom.png";
-import B5school from "../../assets/back2school.png";
-import Nivea from "../../assets/nivea.png";
-import Utensils from "../../assets/utensils.png";
-import Ceralac from "../../assets/ceralac.png";
-import Coke from "../../assets/drink.png";
-import Diaper from "../../assets/smileBaby.png";
-import Coffee from "../../assets/coffee.png";
-import SectionTopHeader from "../../components/SectionTopHeader";
 import ProductCard from "../../components/ProductCard";
-import Kellogs from "../../assets/kellogs.png";
 import SalesComponent from "../../components/SalesComponent";
 import Newsletter from "../../components/Newsletter";
+import styles from "./Homepage.module.css";
+import { Link } from "react-router-dom";
+import axios from "axios";
 
 export default function Homepage() {
   const [displayProducts, setDisplayProducts] = useState(null);
@@ -27,7 +18,6 @@ export default function Homepage() {
       .get("http://localhost:8080/api/v1/products?limit=10")
       .then((response) => {
         setDisplayProducts(response.data.data.products);
-        console.log(response.data.data.products);
       });
   }, []);
 
@@ -36,7 +26,6 @@ export default function Homepage() {
       .get("http://localhost:8080/api/v1/products?category=67142bc188bcdf75ae067119&limit=5")
       .then((response) => {
         setNewProducts(response.data.data.products);
-        console.log(response.data.data.products);
       });
   }, []);
   useEffect(() => {
@@ -44,7 +33,6 @@ export default function Homepage() {
       .get("http://localhost:8080/api/v1/products?category=67142bd488bcdf75ae06711a&limit=5")
       .then((response) => {
         setPopularProducts(response.data.data.products);
-        console.log(response.data.data.products);
       });
   }, []);
 
@@ -54,43 +42,43 @@ export default function Homepage() {
       <section className={styles.hero}>
         {displayProducts && (
           <div className={styles.gridSection}>
-            <div className={styles.productCard}>
+            <Link to={`shop/${displayProducts[6].id}`} className={styles.productCard}>
               <img src={displayProducts[6].icon} alt="" />
               <div>
                 <h3>{displayProducts[6].title}</h3>
                 <p> {displayProducts[6].category.title} </p>
-                <a href="3">Shop Now!</a>
+                <Link to={`/shop/${displayProducts[6].id}`}>Shop Now!</Link>
               </div>
-            </div>
+            </Link>
 
             <div>
-              <div className={`${styles.productCard} ${styles.small}`}>
+              <Link to={`shop/${displayProducts[8].id}`} className={`${styles.productCard} ${styles.small}`}>
                 <img src={displayProducts[8].icon} alt="" />
                 <div>
                   <h3>{displayProducts[8].title}</h3>
                   <p> {displayProducts[8].category.title} </p>
-                  <a href="3">Shop Now!</a>
+                  <Link to={`/shop/${displayProducts[8].id}`}> Shop Now! </Link>
                 </div>
-              </div>
+              </Link>
 
-              <div className={`${styles.productCard} ${styles.small}`}>
+              <Link to={`shop/${displayProducts[5].id}`} className={`${styles.productCard} ${styles.small}`}>
                 <img src={displayProducts[5].icon} alt="" />
                 <div>
                   <h3>{displayProducts[5].title}</h3>
                   <p> {displayProducts[5].category.title} </p>
-                  <a href="3">Shop Now!</a>
+                  <Link to={`/shop/${displayProducts[5].id}`}>Shop Now!</Link>
                 </div>
-              </div>
+              </Link>
             </div>
 
-            <div className={`${styles.productCard} ${styles.long}`}>
+            <Link to={`shop/${displayProducts[9].id}`} className={`${styles.productCard} ${styles.long}`}>
               <img src={displayProducts[9].icon} alt="" />
               <div>
                 <h3>{displayProducts[9].title}</h3>
                 <p> {displayProducts[9].category.title} </p>
-                <a href="3">Shop Now!</a>
+                <Link to={`/shop/${displayProducts[9].id}`}>Shop Now!</Link>
               </div>
-            </div>
+            </Link>
           </div>
         )}
       </section>
@@ -99,13 +87,16 @@ export default function Homepage() {
         {newProducts &&
           newProducts.map((product) => {
             return(
-              <ProductCard
-                productName={product.title}
-                price={product.price}
-                category={product.category.title}
-                imgUrl={product.icon}
-                alt="New"
-              />
+              <Link to={`/shop/${product.id}`} key={product.id}>
+                <ProductCard
+                  productName={product.title}
+                  price={product.price}
+                  category={product.category.title}
+                  imgUrl={product.icon}
+                  alt="New"
+                />
+              
+              </Link>
             )
           })}
       </SalesComponent>
@@ -114,13 +105,15 @@ export default function Homepage() {
       {popularProducts &&
           popularProducts.map((product) => {
             return(
-              <ProductCard
-                productName={product.title}
-                price={product.price}
-                category={product.category.title}
-                imgUrl={product.icon}
-                alt="Hot"
-              />
+              <Link to={`/shop/${product.id}`} key={product.id}>
+                <ProductCard
+                  productName={product.title}
+                  price={product.price}
+                  category={product.category.title}
+                  imgUrl={product.icon}
+                  alt="Hot"
+                />              
+              </Link>
             )
           })}
       </SalesComponent>
