@@ -6,3 +6,8 @@
     gap: 5rem;
     justify-content: center;
 }
+
+a.active{
+    color: var(--purple);
+    font-weight: 800;
+}

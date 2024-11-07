@@ -1,7 +1,6 @@
 import { useState } from "react";
 import styles from "./FormComponent.module.css";
 import axios from "axios";
-// import { useHistory } from 'react-router-dom'
 import { useNavigate } from "react-router-dom";
 
 export default function FormComponent() {

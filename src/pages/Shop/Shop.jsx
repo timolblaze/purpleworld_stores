@@ -1,43 +1,33 @@
-import Navbar from '../../components/Navbar'
-import DarkBG from '../../components/DarkBG'
-import Footer from '../../components/Footer'
-import ProductCard from '../../components/ProductCard'
-import styles from './Shop.module.css' 
-import { useContext, useEffect, useState } from 'react'
-import axios from 'axios'
-import { Link } from 'react-router-dom'
-import { ProductsContext } from '../../contexts/ProductsContext'
+import Navbar from "../../components/Navbar";
+import DarkBG from "../../components/DarkBG";
+import Footer from "../../components/Footer";
+import styles from "./Shop.module.css";
+import { Link, Outlet, useLocation} from "react-router-dom";
+import { useEffect, useState } from "react";
 
 export default function Shop() {
-  const [groceries, setGroceries] = useState(false)
-  const [skinCare, setSkinCare] = useState([])
-
-  const {products} = useContext(ProductsContext)
+  const {pathname} = useLocation();
+  const [path, setPath] = useState('')
 
   useEffect(()=>{
-    axios.get()
-  })
+    const currentLocation = pathname.split("/");
+    if(currentLocation[2]) setPath(currentLocation[2]);
+  },[pathname])
   return (
     <>
-        <Navbar />
-        <DarkBG text="Shop">
-          <div>
-            <p onClick={()=>setGroceries(!groceries)}>Groceries</p> 
-            <p> &#62; </p>
-            <p onClick={()=>setSkinCare(!skinCare)}>Skin Care</p>
-          </div> 
-        </DarkBG>
-          <section className={styles.productArea}>
-            {products.map((product)=>{
-              return(
-                <Link to={`/shop/${product.id}`} key={product.id}> 
-                  <ProductCard productName={product.title} category={product.category.title} price={`${product.price}`} imgUrl={product.icon} />
-                </Link>
-              )
-            })}
+      <Navbar />
+      <DarkBG text="Shop">
+        <div>
+          <Link to="/shop/groceries" className={path === 'groceries' ? styles.active : ''}>Groceries</Link>
+          <p> &#62; </p>
+          <Link to="/shop/skincare" className={path === 'skincare' ? styles.active : ''}>Skin Care</Link>
+        </div>
+      </DarkBG>
 
-          </section>
-        <Footer />
+      <section className={styles.productArea}>
+        <Outlet />
+      </section>
+      <Footer />
     </>
-  )
+  );
 }

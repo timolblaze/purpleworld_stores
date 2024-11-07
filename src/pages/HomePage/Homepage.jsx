@@ -9,17 +9,8 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 export default function Homepage() {
-  const [displayProducts, setDisplayProducts] = useState(null);
   const [newProducts, setNewProducts] = useState(null);
   const [popularProducts, setPopularProducts] = useState(null);
-
-  useEffect(() => {
-    axios
-      .get("http://localhost:8080/api/v1/products?limit=10")
-      .then((response) => {
-        setDisplayProducts(response.data.data.products);
-      });
-  }, []);
 
   useEffect(() => {
     axios
@@ -40,47 +31,11 @@ export default function Homepage() {
     <>
       <Navbar />
       <section className={styles.hero}>
-        {displayProducts && (
-          <div className={styles.gridSection}>
-            <Link to={`shop/${displayProducts[6].id}`} className={styles.productCard}>
-              <img src={displayProducts[6].icon} alt="" />
-              <div>
-                <h3>{displayProducts[6].title}</h3>
-                <p> {displayProducts[6].category.title} </p>
-                <Link to={`/shop/${displayProducts[6].id}`}>Shop Now!</Link>
-              </div>
-            </Link>
-
-            <div>
-              <Link to={`shop/${displayProducts[8].id}`} className={`${styles.productCard} ${styles.small}`}>
-                <img src={displayProducts[8].icon} alt="" />
-                <div>
-                  <h3>{displayProducts[8].title}</h3>
-                  <p> {displayProducts[8].category.title} </p>
-                  <Link to={`/shop/${displayProducts[8].id}`}> Shop Now! </Link>
-                </div>
-              </Link>
-
-              <Link to={`shop/${displayProducts[5].id}`} className={`${styles.productCard} ${styles.small}`}>
-                <img src={displayProducts[5].icon} alt="" />
-                <div>
-                  <h3>{displayProducts[5].title}</h3>
-                  <p> {displayProducts[5].category.title} </p>
-                  <Link to={`/shop/${displayProducts[5].id}`}>Shop Now!</Link>
-                </div>
-              </Link>
-            </div>
-
-            <Link to={`shop/${displayProducts[9].id}`} className={`${styles.productCard} ${styles.long}`}>
-              <img src={displayProducts[9].icon} alt="" />
-              <div>
-                <h3>{displayProducts[9].title}</h3>
-                <p> {displayProducts[9].category.title} </p>
-                <Link to={`/shop/${displayProducts[9].id}`}>Shop Now!</Link>
-              </div>
-            </Link>
-          </div>
-        )}
+        <div className={styles.heroDiv}>
+          <h1>Welcome to PurpleWorld Stores</h1>
+          <h4>...home of quality Groceries and Skin Care </h4>
+          <Link to="/shop"> Shop Now</Link>
+        </div>
       </section>
 
       <SalesComponent heading="New Arrivals">
@@ -117,9 +72,7 @@ export default function Homepage() {
             )
           })}
       </SalesComponent>
-
       <Newsletter />
-
       <Footer />
     </>
   );

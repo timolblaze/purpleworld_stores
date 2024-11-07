@@ -12,9 +12,14 @@
     font-size: 5rem;
     font-weight: 400;
 }
-.darkBg p, .darkBg a{
+.darkBg p, .darkBg  a{
     text-transform: uppercase;
     font-weight: 300;
+    color: #fff;
+}
+.darkBg a:active{
+    color: var(--purple);
+    font-weight: 600;
 }
 .darkBg > div{
     display: flex;

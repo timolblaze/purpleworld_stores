@@ -25,23 +25,21 @@ header{
     font-weight: 600;
     font-size: 2rem;
     text-transform: uppercase;
-    color: #9966CB;
+    color: #000;
 }
-.cartDiv > a:link{
-    color: var(--purple);
+.cartDiv > a{
+    color: #000;
 }
-.cartDiv > a:visited{
-    color: var(--purple);
-}
-.cartDiv > a:hover{
-    color: #551a8b;
-}
+
 .cartDiv > p{
-    color: #551a8b;
+    color: #000;
+    font-size: 2rem;
 }
 .cartDiv > a{
     text-transform: uppercase;
     font-weight: bold;
+    display: flex;
+    align-items: center;
 }
 .categoryDiv{
     background: #9966CB;
@@ -62,4 +60,7 @@ header{
     display: flex;
     gap: 5rem;
     flex: 2;
+}
+header a:global(.active){
+    color: #551a8b;
 }
