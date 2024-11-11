@@ -2,8 +2,9 @@
     position: relative;
     padding: 5rem 10rem;
     height: 90vh;
+    max-height: 1000px;
     background-color: var(--purple);
-    z-index: 1;
+    z-index: -1;
 }
 .hero::after{
     content: '';
@@ -79,4 +80,24 @@
 .bannerSection div:nth-of-type(2) > div{
     height: 455px;
     width: 275px;
+}
+
+
+@media screen and (max-width: 800px) {
+    .hero{
+        padding: 5rem 3rem;
+    }
+    .hero > div{
+        align-items: flex-start;
+        gap: 2rem;
+    }
+    .hero > div > h1{
+        font-size: 4.5rem;
+    }
+    .hero > div > h4{
+        font-size: 1.6rem;
+    }
+    .hero > div > a{
+        margin-top: 4rem;
+    }
 }

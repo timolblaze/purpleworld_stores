@@ -2,12 +2,14 @@ import React, { useContext, useEffect, useState } from "react";
 import Logo from "../assets/purpleworldLogo.png";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { FaBars } from "react-icons/fa";
+import { IoMdClose } from "react-icons/io";
 import styles from "./Navbar.module.css";
 import { Link, NavLink } from "react-router-dom";
 import { CartContext } from "../contexts/CartContext";
 
 export default function Navbar() {
   const [user, setUser] = useState();
+  const [mobile, setMobile] = useState(false);
   const { cartItems } = useContext(CartContext);
 
   useEffect(() => {
@@ -24,17 +26,30 @@ export default function Navbar() {
     }
   }, []);
 
+  function handleLogOut() {
+    localStorage.removeItem("registeredUsers");
+    localStorage.removeItem("loggedInUsers");
+    setUser(null);
+  }
+
   return (
     <div>
-      <header>
+      <header className={mobile ? styles.mobile : ''}>
         <Link to="/" className={styles.logoCtn}>
           <img src={Logo} />
         </Link>
+
+        <div className={styles.icons}>
+          {mobile ? (
+            <IoMdClose size={35} onClick={() => setMobile(false)}/>
+          ) : (
+            <FaBars size={28} onClick={() => setMobile(true)} />
+          )}
+        </div>
         <div className={styles.searchbarCtn}>
           <input type="search" />
         </div>
-
-        <div className={styles.cartDiv}>
+        <div className={mobile ? `${styles.cartDiv} ${styles.mobile}` : `${styles.cartDiv}`}>
           {user ? (
             `Hey, ${user} 😎`
           ) : (
@@ -43,9 +58,14 @@ export default function Navbar() {
           <NavLink to="/shop">Shop</NavLink>
           <NavLink to="/cart">
             {" "}
-            <HiOutlineShoppingBag size={42} />({cartItems.length})
+            <HiOutlineShoppingBag size={42} />({cartItems ? cartItems.length : 0})
           </NavLink>
-          <p className={styles.price}> $0.00</p>
+          {user && (
+            <p className={styles.price} onClick={handleLogOut}>
+              {" "}
+              Logout{" "}
+            </p>
+          )}
         </div>
       </header>
       <div className={styles.categoryDiv} />

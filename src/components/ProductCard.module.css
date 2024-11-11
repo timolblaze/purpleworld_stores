@@ -4,13 +4,21 @@
     align-items: center;
     justify-content: center;
     width: fit-content;
-    padding: 1rem 0rem;
+    padding: 0rem 0rem;
+    padding-bottom: 2rem;
     text-align: center;
     position: relative;
+    border-radius: 5px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 }
 .card > div:nth-of-type(1){
     height: 280px;
     width: 280px;
+    border-radius: 5px;
+}
+.card > div:nth-of-type(1) img{
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
 .card > div:nth-of-type(2){
     display: flex;
@@ -37,6 +45,7 @@
     font-weight: 900;
     text-transform: uppercase;
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 5px;
+    left: 3px;
+    border-radius: 5px;
 }

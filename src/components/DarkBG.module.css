@@ -25,3 +25,12 @@
     display: flex;
     gap: 2rem;
 }
+
+@media screen and (max-width: 800px) {
+    .darkBg h2{
+        font-size: 3.5rem;
+    }
+    .darkBg p, .darkBg a{
+        font-size: 1.5rem;
+    }
+}

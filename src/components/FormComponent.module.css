@@ -94,3 +94,33 @@
     border-radius: 5px;
     margin: 0 auto;
 }
+
+@media screen and (max-width: 800px) {
+    .container{
+        flex-direction: column;
+        gap: 10rem;
+        padding-left: 3rem;
+        padding-right: 3rem;
+    }
+    .regForm{
+        border: none;
+        gap: 4rem;
+    }
+    .regForm h3{
+        font-size: 2.5rem;
+    }
+    .regForm label{
+        font-size: 1.5rem;
+    }
+    .inputControl input{
+        padding: 1.5rem 1rem;
+        font-size: 1.5rem;
+    }
+    .regForm, .registerDiv{
+        width:  100%;
+        padding: 0;
+    }
+    .registerDiv h3, .registerDiv > div{
+        display: none;
+    }
+}

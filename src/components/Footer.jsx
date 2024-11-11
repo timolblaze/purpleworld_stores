@@ -22,6 +22,7 @@ export default function Footer({register}) {
             <li>support@purpleworld.shop</li>
           </ul>
         </div>
+        
         <div>
           <h3>Product Categories</h3>
           <ul>
