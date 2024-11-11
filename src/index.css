@@ -34,3 +34,7 @@ ul,ol{
 button,input[type='checkbox']{
     cursor: pointer;
 }
+
+input, select, textarea{
+    outline: none;
+}

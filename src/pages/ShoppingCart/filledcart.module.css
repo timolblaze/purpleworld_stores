@@ -196,7 +196,7 @@ p.T {
   color: #9966cb;
 }
 
-.cartTotals button {
+.cartTotals a{
   background-color: #7e57c2;
   border-bottom: 2px solid #b12938;
   color: white;
@@ -205,6 +205,8 @@ p.T {
   width: 100%;
   cursor: pointer;
   font-size: 16px;
+  display: inline-block;
+  text-align: center;
 }
 
 .cartTotals button:hover {

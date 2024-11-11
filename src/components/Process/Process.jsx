@@ -8,7 +8,6 @@ const Process = () => {
 
   const getLinkClassName = (path) => {
     const isActive = location.pathname === path;
-  console.log(`Path: ${path}, Active: ${isActive}`);
     return location.pathname === path ? process.activeLink : "";
   };
 

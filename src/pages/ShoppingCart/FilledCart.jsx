@@ -1,11 +1,9 @@
 import React, { useContext, useState } from "react";
-import { cartItemsData, cartTotals } from "../../components/mock";
 import filled from "./filledcart.module.css";
 import { CartContext } from "../../contexts/CartContext";
 import { Link } from "react-router-dom";
 
 const FilledCart = () => {
-  // const [cartItems, setCartItems] = useState(cartItemsData);
   const [couponCode, setCouponCode] = useState("");
   const {cartItems, setCartItems} = useContext(CartContext);
 
@@ -15,17 +13,13 @@ const FilledCart = () => {
         const updatedSubtotal = item.price * newQuantity;
         return { ...item, quantity: newQuantity, subtotal: updatedSubtotal };
       }
-      return item;
+      return item
     });
-    setCartItems(updatedItems);
+    setCartItems(() => updatedItems);
   };
 
   const handleApplyCoupon = () => {
     console.log("Coupon applied:", couponCode);
-  };
-
-  const handleProceedToCheckout = () => {
-    console.log("Proceeding to checkout...");
   };
 
   const clearCart = () =>{
@@ -75,9 +69,7 @@ const FilledCart = () => {
 
       {/* Cart Totals */}
       <CartTotals
-        subtotal={subtotal}
         total={subtotal}
-        onCheckout={handleProceedToCheckout}
       />
     </div>
   );
@@ -112,19 +104,16 @@ const CartItem = ({ item, handleQuantityChange }) => {
   );
 };
 
-const CartTotals = ({ subtotal, total, onCheckout }) => {
+const CartTotals = ({total}) => {
   return (
     <div className={filled.cartTotals}>
       <h3>Cart Totals</h3>
       <div>
-        <p className={filled.subT}>
-          Subtotal: <span>₦{subtotal.toFixed(2)}</span>
-        </p>
         <p className={filled.T}>
-          Total: <span>₦{Number(total.toFixed(2)).toLocaleString()}</span>
+          Total: <span>${Number(total.toFixed(2)).toLocaleString()}</span>
         </p>
       </div>
-      <button onClick={onCheckout}>PROCEED TO CHECKOUT</button>
+      <Link to='/checkout'>PROCEED TO CHECKOUT</Link>
     </div>
   );
 };

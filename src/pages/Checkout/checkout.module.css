@@ -1,0 +1,293 @@
+.checkoutContainer{
+    padding: 3rem 8rem;
+}
+
+.checkoutLinks1,  .checkoutLinks2{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.checkoutLinks1 p, .checkoutLinks1 a, .checkoutLinks2 p, .checkoutLinks2 a{
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 22.4px;
+}
+
+.checkoutLinks1 p, .checkoutLinks2 p{
+    color: #000000;
+}
+
+.checkoutLinks1 a, .checkoutLinks2 a{
+    color: #9966CB;
+    text-decoration: underline;
+}
+
+.checkoutLinks2{
+    margin-top: 1rem;
+    /* margin-bottom: 3rem; */
+}
+
+.checkoutSection{
+    display: flex; 
+    align-items: start;
+    gap: 2rem;
+}
+
+.checkoutFormSection{
+    width: 50%;
+}
+
+.checkoutFormSection h3{
+font-size: 23px;
+line-height: 26.4px;
+color: #000000;
+margin-bottom: 1.5rem;
+padding-top: 4rem;
+}
+
+.checkoutForm, .checkoutForm2{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.names{
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.firstName, .lastName{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 50%;
+}
+
+.firstName label, .lastName label,.fieldName label{
+    font-size: 14px;
+    line-height: 16.8px;
+    font-weight: 400;
+}
+
+.firstName input, .lastName input, .fieldName input, .fieldName select, .fieldName textarea{
+    border: 2px solid #E5E5E5;
+    padding: .5rem 1rem;
+    color: rgba(0, 0, 0, 0.6);
+
+}
+
+.fieldName{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+.checkbox1, .checkbox2{
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+
+.checkbox1{
+    margin-top: 2rem;
+}
+
+.checkbox2{
+    margin-bottom: 2rem;
+}
+
+.checkbox1 input, .checkbox2 input{
+    padding: .5rem;
+    border: 1.5px solid #000000;
+}
+
+.checkbox1 a, .checkbox1 label, .checkbox2 a, .checkbox2 label{
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16.8px;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.orderDetailsSection{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.orderDetailsContainer{
+    display: flex;
+    flex-direction: column;
+    background-color: #F7F7F7;
+    padding: 3rem 2rem;
+}
+
+.orderDetailsContainer h3{
+font-size: 22px;
+font-weight: 700;
+line-height: 26.4px;
+text-align: center;
+margin-bottom: 1.5rem;
+}
+
+.checkoutInvoice{
+    display: flex;
+    flex-direction: column;
+    background-color: #FFFFFF;
+    box-shadow:  0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+}
+
+/* .orderDetails{
+    display: flex;
+    flex-direction: column;
+} */
+
+.orderRow{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 2px solid rgba(236, 236, 236, 1);
+    padding: 1rem;
+}
+
+.product, .subtotal{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 26.4px;
+color: #000000; 
+}
+
+.subtotal{
+    line-height: 18.2px;
+}
+
+.productName, .productPrice{
+font-size: 14px;
+font-weight: 400;
+line-height: 16.8px;
+color: rgba(0, 0, 0, 0.7);
+}
+
+.subtotalText{
+    font-size: 14px;
+font-weight: 700;
+line-height: 19.6px;
+color: #000000;
+}
+
+.subtotalPrice{
+    font-size: 14px;
+font-weight: 600;
+line-height: 18.2px;
+color: #9966CB;
+}
+
+.total{
+    font-size: 16px;
+font-weight: 700;
+line-height: 22.4px;
+color: #000000;
+}
+
+.totalPrice{
+    font-size: 22px;
+font-weight: 600;
+line-height: 35.2pxpx;
+color: #9966CB;
+}
+
+.paymentMethods{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin: 2rem 0rem;
+    padding-bottom: 2rem;
+    border-bottom: 2px solid #ECECEC;
+}
+
+.paymentMethods label{
+    display: flex;
+    align-items: center;
+    gap: .7rem;
+    font-size: 14px;
+font-weight: 400;
+line-height: 16.8px;
+color: rgba(0, 0, 0, 0.7);
+}
+
+.paymentMethods input{
+    accent-color: #000000;
+}
+
+
+.paymentInfo{
+    font-size: 14px;
+font-weight: 400;
+line-height: 16.8px;
+color: #000000;
+padding: 1rem;
+    background-color: #FFFFFF;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+}
+
+.privacyNotice{
+    font-size: 14px;
+font-weight: 400;
+line-height: 16.8px;
+color: rgba(0, 0, 0, 0.6);
+}
+
+.privacyNotice a{
+    color: #000000;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16.8px;
+    text-decoration: underline;
+}
+
+.placeOrderButton{
+    width: 100%;
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: #8a00e6;
+  border: none;
+  border-bottom: 2px solid #B12938;
+  cursor: pointer;
+  margin-top: 2rem;
+  transition: background-color 0.3s;
+}
+
+
+@media screen and (max-width: 830px) {
+    .checkoutSection{
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .checkoutFormSection, .orderDetailsSection{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 675px) {
+    .checkoutContainer{
+        padding: 2.5rem 5rem;
+    }
+}
+
+@media screen and (max-width: 520px) {
+    .checkoutContainer{
+        padding: 2rem 4rem;
+    }
+}
+
+@media screen and (max-width: 520px) {
+    .checkoutContainer{
+        padding: 2rem 4rem;
+    }
+}
