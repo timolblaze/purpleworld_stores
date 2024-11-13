@@ -4,7 +4,7 @@
     height: 90vh;
     max-height: 1000px;
     background-color: var(--purple);
-    z-index: -1;
+    z-index: 100;
 }
 .hero::after{
     content: '';

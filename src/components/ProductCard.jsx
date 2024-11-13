@@ -17,7 +17,7 @@ export default function ProductCard({
       <div>
         <p>{productName}</p>
         <h4>{category}</h4>
-        <p>${price}</p>
+        <p>₦{price}</p>
       </div>
     </div>
   );

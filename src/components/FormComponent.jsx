@@ -112,15 +112,6 @@ export default function FormComponent() {
           </div>
 
           <button type="submit"> Create Account</button>
-
-          {/* <div className={styles.recoverDiv}>
-            <div className={styles.remPassword}>
-              <input type="checkbox" name="remPword" />
-              <p>Remember Password</p>
-            </div>
-
-            <a href="3">Lost your password?</a>
-          </div> */}
         </form>
       ) : (
         <>
@@ -154,15 +145,6 @@ export default function FormComponent() {
             </div>
 
             <button type="submit"> Login</button>
-
-            {/* <div className={styles.recoverDiv}>
-              <div className={styles.remPassword}>
-                <input type="checkbox" name="remPword" />
-                <p>Remember Password</p>
-              </div>
-
-              <a href="3">Lost your password?</a>
-            </div> */}
           </form>
         </>
       )}

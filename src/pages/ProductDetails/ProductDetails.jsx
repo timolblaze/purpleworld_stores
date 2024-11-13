@@ -26,10 +26,15 @@ export default function ProductDetails() {
   }, []);
 
   function addToCart() {
-    // setCartItems(() => [])
-    let updatedCartItems = [...cartItems, {...product, quantity: 1, subtotal: product.price}]
-    setCartItems(updatedCartItems);
-    localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
+    const existing = cartItems.some(items => items.id === product.id)
+    if(existing){
+      alert('Item already exists in Cart. Head over to the Cart page and checkout 😎')
+    }else{
+      let updatedCartItems = [...cartItems, {...product, quantity: 1, subtotal: product.price}]
+      setCartItems(updatedCartItems);
+      localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
+      alert('Successfully added to Cart');
+    }
   }
 
   return (

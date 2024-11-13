@@ -1,9 +1,5 @@
 import React, { useContext, useState } from "react";
-import {
-  countries,
-  Housing,
-  statesInNigeria,
-} from "../../components/mock";
+import { countries, Housing, statesInNigeria } from "../../components/mock";
 import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import Process from "../../components/Process/Process";
@@ -11,8 +7,7 @@ import Footer from "../../components/Footer";
 import checkout from "./Checkout.module.css";
 import design from "../../assets/design.png";
 import { CartContext } from "../../contexts/CartContext";
-import PaystackPop from '@paystack/inline-js';
-
+import PaystackPop from "@paystack/inline-js";
 
 const Checkout = () => {
   const [formData, setFormData] = useState({
@@ -55,7 +50,6 @@ const Checkout = () => {
     }));
   };
 
-
   const handleShippingChange = (e) => {
     const { name, value } = e.target;
     setShippingData((prevData) => ({
@@ -65,45 +59,51 @@ const Checkout = () => {
   };
 
   const validateForm = (data) => {
-    const requiredFields = ["firstName", "lastName", "country", "streetAddress", "city", "state", "phone", "email"];
-    console.log(requiredFields.every((field) => data[field]));
+    const requiredFields = [
+      "firstName",
+      "lastName",
+      "country",
+      "streetAddress",
+      "city",
+      "state",
+      "phone",
+      "email",
+    ];
     return requiredFields.every((field) => data[field]);
   };
 
-  // const handlePaymentChange = (e) => {
-  //   setPaymentMethod(e.target.value);
-  // };
-
   const handleOrder = (e) => {
     e.preventDefault();
-    const dataToValidate = formData.shipToDifferentAddress ? shippingData : formData;
-    console.log(typeof paystackKey)
+    const dataToValidate = formData.shipToDifferentAddress
+      ? shippingData
+      : formData;
 
     if (validateForm(dataToValidate)) {
-      const paystack = new PaystackPop()
+      const paystack = new PaystackPop();
       paystack.newTransaction({
-        key: "pk_test_591a06902cc01bca4b38c110176d4ab69f10efa9",
+        key: "pk_test_d6e4e8e4a9f1cb8fc38f61822afefec6b438e41a",
         amount: cartTotal * 100,
         email: formData.email,
         firstName: formData.firstName,
         lastName: formData.lastName,
-        onSuccess(transaction){
-          let message = `Payment Completed 🥰! Transaction ID: ${transaction.reference}`
-          alert(message)
+        onSuccess(transaction) {
+          let message = `Payment Completed 🥰! Transaction ID: ${transaction.reference}`;
+          alert(message);
         },
-        onCancel(){
-          alert('OOPS 😔!! Transaction Canceled')
-        }
-      })
+        onCancel() {
+          alert("OOPS 😔!! Transaction Canceled");
+        },
+      });
     } else {
       alert("Please fill out all required fields.");
     }
   };
-  
-  const {cartItems} = useContext(CartContext);
-  const cartTotal = cartItems.reduce((acc, item) => acc + Number(item.subtotal), 0);
-  const paystackKey = import.meta.env.VITE_PAYSTACK_PUBLIC_KEY;
 
+  const { cartItems } = useContext(CartContext);
+  const cartTotal = cartItems.reduce(
+    (acc, item) => acc + Number(item.subtotal),
+    0
+  );
 
   return (
     <main>
@@ -248,7 +248,6 @@ const Checkout = () => {
                   ))}
                 </select>
               </div>
-
 
               <div className={checkout.checkbox1}>
                 <input
@@ -406,38 +405,38 @@ const Checkout = () => {
           </section>
 
           <section className={checkout.orderDetailsSection}>
-          <img src={design} alt="checkout design"/>
-          <section className={checkout.orderDetailsContainer}>
-            <h3>YOUR ORDER</h3>
+            <img src={design} alt="checkout design" />
+            <section className={checkout.orderDetailsContainer}>
+              <h3>YOUR ORDER</h3>
 
-            <div className={checkout.checkoutInvoice}>
-              <div className={checkout.orderRow}>
-                <p className={checkout.product}>PRODUCT</p>
-                <p className={checkout.subtotal}>SUBTOTAL</p>
-              </div>
+              <div className={checkout.checkoutInvoice}>
+                <div className={checkout.orderRow}>
+                  <p className={checkout.product}>PRODUCT</p>
+                  <p className={checkout.subtotal}>SUBTOTAL</p>
+                </div>
 
-              <div className={checkout.orderDetails}>
-                {cartItems.map((product, index) => (
-                  <div key={index} className={checkout.orderRow}>
-                    <p className={checkout.productName}>
-                      {product.title} x {product.quantity}
-                    </p>
-                    <p className={checkout.productPrice}>
-                      ${product.subtotal.toLocaleString()}
+                <div className={checkout.orderDetails}>
+                  {cartItems.map((product, index) => (
+                    <div key={index} className={checkout.orderRow}>
+                      <p className={checkout.productName}>
+                        {product.title} x {product.quantity}
+                      </p>
+                      <p className={checkout.productPrice}>
+                        ₦{product.subtotal.toLocaleString()}
+                      </p>
+                    </div>
+                  ))}
+                  <div className={checkout.orderRow}>
+                    <p className={checkout.total}>Total</p>
+                    <p className={checkout.totalPrice}>
+                      ₦{cartTotal.toLocaleString()}
                     </p>
                   </div>
-                ))}
-                <div className={checkout.orderRow}>
-                  <p className={checkout.total}>Total</p>
-                  <p className={checkout.totalPrice}>
-                    ${cartTotal.toLocaleString()}
-                  </p>
                 </div>
               </div>
-            </div>
 
-            <div className={checkout.paymentMethods}>
-              {/* <label>
+              <div className={checkout.paymentMethods}>
+                {/* <label>
                 <input
                   type="radio"
                   name="paymentMethod"
@@ -445,18 +444,22 @@ const Checkout = () => {
                 />
                 Cash on delivery
               </label> */}
-            </div>
+              </div>
 
-            <p className={checkout.privacyNotice}>
-              Your personal data will be used to process your order, support
-              your experience throughout this website, and for other purposes
-              described in our <Link to="/privacy-policy">privacy policy</Link>.
-            </p>
+              <p className={checkout.privacyNotice}>
+                Your personal data will be used to process your order, support
+                your experience throughout this website, and for other purposes
+                described in our{" "}
+                <Link to="/privacy-policy">privacy policy</Link>.
+              </p>
 
-            <button className={checkout.placeOrderButton} onClick={handleOrder}>
-              PLACE ORDER
-            </button>
-          </section>
+              <button
+                className={checkout.placeOrderButton}
+                onClick={handleOrder}
+              >
+                PLACE ORDER
+              </button>
+            </section>
           </section>
         </section>
       </div>

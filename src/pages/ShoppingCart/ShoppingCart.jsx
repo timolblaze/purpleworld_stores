@@ -1,4 +1,3 @@
-import React, {useState} from "react";
 import Navbar from "../../components/Navbar";
 import Process from "../../components/Process/Process";
 import Footer from "../../components/Footer";
@@ -8,7 +7,6 @@ import { useContext } from "react";
 import { CartContext } from "../../contexts/CartContext";
 
 const ShoppingCart = () => {
-  const [isCartEmpty, setIsCartEmpty] = useState(true);
   const {cartItems} = useContext(CartContext)
 
   return (

@@ -79,6 +79,8 @@
 }
 .relatedProducts > div:nth-of-type(2){
   display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
   margin-top: 8rem;
   justify-content: space-between;
 }

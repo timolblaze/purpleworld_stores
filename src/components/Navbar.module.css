@@ -63,11 +63,11 @@ header a:global(.active){
     display: none;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 850px) {
     header{
         padding: 3rem 1rem;
         position: relative;
-        z-index: 20;
+        z-index: 2000;
     }
     .logoCtn{
         width: 150px;
@@ -112,7 +112,7 @@ header a:global(.active){
         color: #f4f4f4;
         background-color: var(--purple);
         z-index: 1000;
-        transform: translateX(-500px);
+        transform: translateX(-880px);
         transition: all .5s;
     }
     .cartDiv.mobile{
