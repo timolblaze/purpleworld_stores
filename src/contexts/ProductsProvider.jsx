@@ -5,7 +5,7 @@ import { ProductsContext } from "./ProductsContext";
 export function ProductsProvider({children}){
     const [products, setProducts] = useState([]);
     useEffect(()=>{
-        axios.get('http://localhost:8080/api/v1/products?limit=20').then(response => {
+        axios.get('https://pw-be-1.onrender.com/api/v1/products?limit=20').then(response => {
           setProducts(response.data.data.products)
         })
       },[])

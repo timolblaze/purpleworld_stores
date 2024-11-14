@@ -1,4 +1,4 @@
-import  React from "react";
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Homepage from "./pages/HomePage/Homepage";
 import Login from "./pages/Login";
@@ -8,9 +8,12 @@ import ShoppingCart from "./pages/ShoppingCart/ShoppingCart";
 import ProductsLayout from "./components/ProductsLayout";
 import ProductsList from "./components/ProductsList";
 import GroceriesList from "./components/GroceriesList";
-import SkinCareList from "./components/SkinCareList"
+import SkinCareList from "./components/SkinCareList";
 import CartProvider from "./contexts/CartProvider";
 import Checkout from "./pages/Checkout/Checkout";
+import Dashboard from "./pages/Dashboard/Dashboard";
+import PrivateRoutes from "./components/PrivateRoutes";
+import Errorpage from "./pages/ErrorPage/Errorpage";
 
 function App() {
   return (
@@ -18,20 +21,31 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route index element={<Homepage />} />
-          <Route path="/login" element={<Login />} />
 
           <Route element={<ProductsLayout />}>
-              <Route path="/shop" element={<Shop />}> 
-                <Route index element={<ProductsList /> } />
-                <Route path="groceries" element={ <GroceriesList /> } />
-                <Route path="skincare" element={ <SkinCareList /> } />
-              </Route>
-              <Route path="shop/:productId" element={<ProductDetails />} />
+            <Route path="/shop" element={<Shop />}>
+              <Route index element={<ProductsList />} />
+              <Route path="groceries" element={<GroceriesList />} />
+              <Route path="skincare" element={<SkinCareList />} />
+            </Route>
+            <Route path="shop/:productId" element={<ProductDetails />} />
           </Route>
-            
+
           <Route path="/cart" element={<ShoppingCart />} />
           <Route path="/checkout" element={<Checkout />} />
+
+          <Route path="/login" element={<Login />} />
+          <Route
+            path="/dashboard"
+            element={
+              <PrivateRoutes>
+                <Dashboard />
+              </PrivateRoutes>
+            }
+          />
+        <Route path="/*" element={<Errorpage />}/>
         </Routes>
+
       </BrowserRouter>
     </CartProvider>
   );

@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import styles from "./FormComponent.module.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import {AuthContext} from "../contexts/AuthProvider";
 
 export default function FormComponent() {
   const [register, setRegister] = useState(false);
@@ -9,19 +10,21 @@ export default function FormComponent() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
+  
+  const {setIsAuthenticated} = useContext(AuthContext);
   const navigate = useNavigate();
-
 
   function handleSignUp(e) {
     e.preventDefault();
     axios
-      .post("http://localhost:8080/api/v1/auth/register", {
+      .post("https://pw-be-1.onrender.com/api/v1/auth/register", {
         email,
         password,
         fullName,
       })
       .then((response) => {
         if(response.data.status) localStorage.setItem('registeredUsers', JSON.stringify(response.data.data))
+        setIsAuthenticated(true);
         navigate('/')
         
       })
@@ -37,12 +40,13 @@ export default function FormComponent() {
   function handleLogin(e) {
     e.preventDefault();
     axios
-      .post("http://localhost:8080/api/v1/auth/login", {
+      .post("https://pw-be-1.onrender.com/api/v1/auth/login", {
         email,
         password,
       })
       .then((response) => {
         if(response.data.status) localStorage.setItem('loggedInUsers', JSON.stringify(response.data.data))
+        setIsAuthenticated(true)
         navigate('/')
         
       })

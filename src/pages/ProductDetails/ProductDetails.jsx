@@ -18,7 +18,7 @@ export default function ProductDetails() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/api/v1/products?sortBy=popular&limit=5")
+      .get("https://pw-be-1.onrender.com/api/v1/products?sortBy=popular&limit=5")
       .then((response) => {
         const { products } = response.data.data;
         setRelatedProducts(products);
@@ -95,3 +95,4 @@ export default function ProductDetails() {
     </>
   );
 }
+ 

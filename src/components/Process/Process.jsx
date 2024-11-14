@@ -17,8 +17,6 @@ const Process = () => {
         <Link to="/cart" className={getLinkClassName("/cart")}>SHOPPING CART</Link>
         <BsArrowRight style={{fontSize: "20px", color: "#808080"}} />
         <Link to="/checkout" className={getLinkClassName("/checkout")}>CHECKOUT</Link>
-        <BsArrowRight style={{fontSize: "20px", color: "#808080"}}/>
-        <Link to="/order" className={getLinkClassName("/order")}>ORDER COMPLETE</Link>
       </div>
     </main>
   );
