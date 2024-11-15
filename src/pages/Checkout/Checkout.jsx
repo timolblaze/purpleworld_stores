@@ -311,7 +311,7 @@ const Checkout = () => {
                   required
                 >
                   <option value="">Select a state</option>
-                  {statesInNigeria.map((state, index) => (
+                  {statesInAustralia.map((state, index) => (
                     <option key={index} value={state}>
                       {state}
                     </option>
