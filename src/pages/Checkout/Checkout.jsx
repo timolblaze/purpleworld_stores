@@ -90,7 +90,7 @@ const Checkout = () => {
     if (validateForm(dataToValidate)) {
       const paystack = new PaystackPop();
       paystack.newTransaction({
-        key: "pk_test_d6e4e8e4a9f1cb8fc38f61822afefec6b438e41a",
+        key: "pk_test_591a06902cc01bca4b38c110176d4ab69f10efa9",
         amount: cartTotal * 100,
         email: formData.email,
         firstName: formData.firstName,
