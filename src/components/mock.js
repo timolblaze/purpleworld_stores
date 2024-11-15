@@ -25,6 +25,10 @@ export const statesInNigeria = [
   "Plateau", "Rivers", "Sokoto", "Taraba", "Yobe", "Zamfara", "FCT"
 ];
 
+export const statesInAustralia = [
+  "New South Wales", "Victoria", "Queensland", "Western Australia", "South Australia", "Tasmania"
+];
+
 export const fakeData = {
   orderInfo: [
     { label: 'Order number', value: '16105' },

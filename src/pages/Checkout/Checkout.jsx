@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { countries, Housing, statesInNigeria } from "../../components/mock";
+import { countries, Housing, statesInAustralia } from "../../components/mock";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import Process from "../../components/Process/Process";
@@ -255,7 +255,7 @@ const Checkout = () => {
                   required
                 >
                   <option value="">Select a state</option>
-                  {statesInNigeria.map((state, index) => (
+                  {statesInAustralia.map((state, index) => (
                     <option key={index} value={state}>
                       {state}
                     </option>
@@ -385,7 +385,7 @@ const Checkout = () => {
                     required
                   >
                     <option value="">Select a state</option>
-                    {statesInNigeria.map((state, index) => (
+                    {statesInAustralia.map((state, index) => (
                       <option key={index} value={state}>
                         {state}
                       </option>
