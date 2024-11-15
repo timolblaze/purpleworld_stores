@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { countries, Housing, statesInNigeria, statesInNigeria} from "../../components/mock";
+import { countries, Housing, statesInNigeria, statesInAustralia} from "../../components/mock";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import Process from "../../components/Process/Process";
