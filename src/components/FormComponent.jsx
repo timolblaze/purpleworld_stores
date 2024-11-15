@@ -5,17 +5,23 @@ import { useNavigate } from "react-router-dom";
 import {AuthContext} from "../contexts/AuthProvider";
 
 export default function FormComponent() {
+  //Various state variables to hold data for the Form Component and it's children elements
   const [register, setRegister] = useState(false);
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   
+  // Retrieving the setisAuthenticated state setting function from the AuthContext using the React useContext hook 
   const {setIsAuthenticated} = useContext(AuthContext);
+  // Assigning the navigate variable to the useNavigate React-router-dom hook
   const navigate = useNavigate();
 
+  // Function to handle the Registering functionality of the form
   function handleSignUp(e) {
+    // prevents the page from reloading as it's the default behaviour of the submit button 
     e.preventDefault();
+    // POST request using axios to send a Register request to the registration endpoint 
     axios
       .post("https://pw-be-1.onrender.com/api/v1/auth/register", {
         email,
@@ -23,12 +29,16 @@ export default function FormComponent() {
         fullName,
       })
       .then((response) => {
+        //checking the response status to ensure it returns true beforre storing the data from the response
         if(response.data.status) localStorage.setItem('registeredUsers', JSON.stringify(response.data.data))
+        //setting the isAuthenticated state to true to indicate that a user has logged in        
         setIsAuthenticated(true);
+        // after user is logged in, the user is redirected to the Home page
         navigate('/')
         
       })
       .catch((error) => {
+        //Error checking block to alert user on the error encountered while registering
         const { message } = error.response.data;
         message.includes("duplicate key error")
           ? alert(
@@ -37,20 +47,29 @@ export default function FormComponent() {
           : alert(message);
       });
   }
+
+  // Function to handle the Login functionality of the form
   function handleLogin(e) {
+    // prevents the page from reloading as it's the default behaviour of the submit button 
     e.preventDefault();
+
+    // POST request using axios to send a Login request to the login endpoint 
     axios
       .post("https://pw-be-1.onrender.com/api/v1/auth/login", {
         email,
         password,
       })
       .then((response) => {
+        //checking the response status to ensure it returns true beforre storing the data from the response
         if(response.data.status) localStorage.setItem('loggedInUsers', JSON.stringify(response.data.data))
+        //setting the isAuthenticated state to true to indicate that a user has logged in
         setIsAuthenticated(true)
+        // after user is logged in, the user is redirected to the Home page
         navigate('/')
         
       })
       .catch((error) => {
+        //Error checking block to alert user on the error encountered while logging in
         const { message } = error.response.data;
         message.includes("duplicate key error")
           ? alert(

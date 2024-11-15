@@ -207,7 +207,7 @@ p.T {
   color: #9966cb;
 }
 
-.cartTotals a {
+.cartTotals button {
   background-color: #7e57c2;
   border-bottom: 2px solid #b12938;
   color: white;

@@ -49,7 +49,7 @@ export default function ProductDetails() {
             <div className={styles.productText}>
               <h4>{product.category.title}</h4>
               <h2>{product.title}</h2>
-              <p>{`$${product.price}`}</p>
+              <p>₦{product.price}</p>
 
               <div className={styles.productDetails}>
                 <p>
@@ -95,4 +95,3 @@ export default function ProductDetails() {
     </>
   );
 }
- 

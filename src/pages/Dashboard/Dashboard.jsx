@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Navbar from "../../components/Navbar";
 import DarkBG from "../../components/DarkBG";
 import Footer from "../../components/Footer";
 import { Link, useLocation } from "react-router-dom";
 import styles from "./Dashboard.module.css"
+import { AuthContext } from "../../contexts/AuthProvider";
 
 export default function Dashboard() {
   const location = useLocation();
+  const {isAuthenticated, setIsAuthenticated} = useContext(AuthContext);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const toggleSidebar = () => {
@@ -22,6 +24,14 @@ export default function Dashboard() {
       items: 1,
     },
   ];
+
+  function handleLogOut() {
+    if(isAuthenticated){
+      localStorage.removeItem("registeredUsers");
+      localStorage.removeItem("loggedInUsers");
+      setIsAuthenticated(false)
+    }
+  }
   
 
   return (
@@ -31,27 +41,15 @@ export default function Dashboard() {
       <main className={styles.dasboardContainer}>
       <div className={styles.sidebar}>
       <h3>My ACCOUNT</h3>
-      <ul>
-        <li className={location.pathname === "/dashboard" ? styles.active : ""}>
-          <Link to="/dashboard">Dashboard</Link>
+      <ul >
+        <li>
+          <button className={styles.dashboardBtn}>Orders</button>
         </li>
-        <li className={location.pathname === "/orders" ? styles.active : ""}>
-          <Link to="/orders">Orders</Link>
+        <li>
+          <button className={styles.dashboardBtn}>Account details</button>
         </li>
-        <li className={location.pathname === "/downloads" ? styles.active : ""}>
-          <Link to="/downloads">Downloads</Link>
-        </li>
-        <li className={location.pathname === "/addresses" ? styles.active : ""}>
-          <Link to="/addresses">Addresses</Link>
-        </li>
-        <li className={location.pathname === "/account-details" ? styles.active : ""}>
-          <Link to="/account-details">Account details</Link>
-        </li>
-        <li className={location.pathname === "/wishlist" ? styles.active : ""}>
-          <Link to="/wishlist">Wishlist</Link>
-        </li>
-        <li className={location.pathname === "/logout" ? styles.active : ""}>
-          <Link to="/logout">Logout</Link>
+        <li>
+          <button onClick={handleLogOut} className={styles.dashboardBtn}>Logout</button>
         </li>
       </ul>
     </div>

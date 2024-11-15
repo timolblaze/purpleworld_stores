@@ -13,7 +13,10 @@ const ShoppingCart = () => {
     <main>
       <Navbar />
       <Process />
+
+      {/* Conditionally rendering the componenets below based on the value of the Cart items array*/}
       {cartItems.length < 1 ? <EmptyCart /> : <FilledCart />}
+      
       <Footer />
     </main>
   );

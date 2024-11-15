@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { countries, Housing, statesInAustralia } from "../../components/mock";
+import { countries, Housing, statesInNigeria, statesInAustralia} from "../../components/mock";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import Process from "../../components/Process/Process";
@@ -8,16 +8,12 @@ import checkout from "./checkout.module.css";
 import design from "../../assets/design.png";
 import { CartContext } from "../../contexts/CartContext";
 import PaystackPop from "@paystack/inline-js";
+import axios from "axios";
+import { AuthContext } from "../../contexts/AuthProvider";
 
 const Checkout = () => {
-
-  useEffect(()=>{
-    if(cartItems.length < 1){
-      alert('OOPS!! Your Cart Is Empty. Kindly head over to Shop before proceeding to Checkout')
-      navigate('/shop')
-    }
-  },[])
-
+  // State variables to manage data for the Checkout component and its children 
+  const [accessToken, setAccessToken] = useState('');
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -47,10 +43,29 @@ const Checkout = () => {
     orderNotes: "",
   });
 
-  const [orderData, setOrderData] = useState(null);
+  // Various Global state variables retrieved using the useContext React hook 
+  const {isAuthenticated} = useContext(AuthContext)
+  const { cartItems, setCartItems } = useContext(CartContext);
+  const {cartReference} = useContext(CartContext)
   const navigate = useNavigate();
-  // const [paymentMethod, setPaymentMethod] = useState("bank");
 
+  // useEffect React hook to check if the user's is trying to access the cart page when cartitems is empty and returns user back to shop page
+  useEffect(()=>{
+    if(cartItems.length < 1){
+      alert('OOPS!! Your Cart Is Empty. Kindly head over to Shop before proceeding to Checkout')
+      navigate('/shop')
+    }
+  },[])
+
+  // useEffect React hook to check if the user accessing the Checkout page is a logged in user or not
+  useEffect(()=>{
+    if(localStorage.getItem("registeredUsers") || localStorage.getItem("loggedInUsers")){
+      const userdetails = JSON.parse(localStorage.getItem('loggedInUsers'));
+      setAccessToken(userdetails.accessToken)
+    }
+  },[isAuthenticated])
+
+  // Handle change function to handle the various changes on the form inputs
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData((prevData) => ({
@@ -59,6 +74,7 @@ const Checkout = () => {
     }));
   };
 
+  // Handle change function to handle the various changes on the shipping data form inputs
   const handleShippingChange = (e) => {
     const { name, value } = e.target;
     setShippingData((prevData) => ({
@@ -67,6 +83,7 @@ const Checkout = () => {
     }));
   };
 
+  // Validateform function to validate the form inputs during submission to minimize errors
   const validateForm = (data) => {
     const requiredFields = [
       "firstName",
@@ -81,27 +98,66 @@ const Checkout = () => {
     return requiredFields.every((field) => data[field]);
   };
 
+  // HandleOrder function to process the order transaction  
   const handleOrder = (e) => {
     e.preventDefault();
     const dataToValidate = formData.shipToDifferentAddress
       ? shippingData
       : formData;
 
+      // generateOrder function to handle the Order generation and sendd Order details to the database
+      function generateOrder() {
+        // checking the isAuthenticated state to determine the header parameter to be sent during the POST request
+        const headers = isAuthenticated
+        ? { Authorization: `Bearer ${accessToken}` }
+        : {};
+
+        // Making POST request to send the Order made by the user to the database 
+        axios.post(
+          'https://pw-be-1.onrender.com/api/v1/orders/new',
+          {
+            reference: cartReference,
+            items: cartItems.map(item => ({
+              _id: item.id,
+              title: item.title,
+              price: item.price,
+              quantity: item.quantity,
+              subtotal: item.subtotal,
+            })),
+            amount: cartTotal,
+          },
+          { headers }
+        )
+        .then(response => console.log(response.data))
+        .catch(error => console.error('Error:', error));
+      }
+
+    // Using the validateForm function to ensure that Forms that are properly filled before handling the Order 
     if (validateForm(dataToValidate)) {
+      // using the PaystackPop test API integrration to handle payment
       const paystack = new PaystackPop();
+      // creating a new Instance of the Paystack transaction
       paystack.newTransaction({
         key: "pk_test_591a06902cc01bca4b38c110176d4ab69f10efa9",
         amount: cartTotal * 100,
         email: formData.email,
         firstName: formData.firstName,
         lastName: formData.lastName,
+
+        //onSuccess method runs only when the user proceeds with the transaction
         onSuccess(transaction) {
           let message = `Payment Completed 🥰! Transaction ID: ${transaction.reference}`;
           alert(message);
+          generateOrder()
+
+          //Cart is cleared 
           localStorage.removeItem("cartItems");
           setCartItems([]);
+          //Returns user back to the Shop page
           navigate('/shop')
         },
+
+        // onCancel method run when transaction is cancelled by the user
         onCancel() {
           alert("OOPS 😔!! Transaction Canceled");
         },
@@ -113,7 +169,7 @@ const Checkout = () => {
     }
   };
 
-  const { cartItems, setCartItems } = useContext(CartContext);
+  //Calculating the Total cost of each order
   const cartTotal = cartItems.reduce(
     (acc, item) => acc + Number(item.subtotal),
     0
@@ -385,7 +441,7 @@ const Checkout = () => {
                     required
                   >
                     <option value="">Select a state</option>
-                    {statesInAustralia.map((state, index) => (
+                    {statesInNigeria.map((state, index) => (
                       <option key={index} value={state}>
                         {state}
                       </option>
@@ -449,17 +505,6 @@ const Checkout = () => {
                 </div>
               </div>
 
-              <div className={checkout.paymentMethods}>
-                {/* <label>
-                <input
-                  type="radio"
-                  name="paymentMethod"
-                  value="cash"
-                />
-                Cash on delivery
-              </label> */}
-              </div>
-
               <p className={checkout.privacyNotice}>
                 Your personal data will be used to process your order, support
                 your experience throughout this website, and for other purposes
@@ -483,4 +528,3 @@ const Checkout = () => {
 };
 
 export default Checkout;
- 

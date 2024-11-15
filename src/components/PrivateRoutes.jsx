@@ -3,25 +3,12 @@ import { AuthContext } from '../contexts/AuthProvider';
 import { Navigate} from 'react-router-dom'
 
 export default function PrivateRoutes({children}) {
+    // Retrieving the value of the isAuthenticated state from the AuthContext using the useContext React Hook 
     const {isAuthenticated} = useContext(AuthContext)
     
+    // checking if user is Logged in via the isAuthenticated state to redirect user to the Login page if user is not 
     if(!isAuthenticated){
         return <Navigate  to="/login" replace/>
     }
     return children;
 }
-
-
-// const ProtectedRoute = ({ children }) => {
-//   const { isAuthenticated } = useContext(AuthContext);
-
-//   // If the user is not authenticated, navigate to the login page
-//   if (!isAuthenticated) {
-//     return <Navigate to="/login" replace />;
-//   }
-
-//   // If the user is authenticated, render the protected component
-//   return children;
-// };
-
-// export default ProtectedRoute;

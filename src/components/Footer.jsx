@@ -6,6 +6,7 @@ import styles from "./Footer.module.css";
 export default function Footer({register}) {
   
   return (
+    // Footer Component styled with footer.module.css file
     <footer>
       <div className={styles.footer}>
         <div>

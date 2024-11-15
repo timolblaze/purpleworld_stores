@@ -6,12 +6,16 @@ import { IoMdClose } from "react-icons/io";
 import styles from "./Navbar.module.css";
 import { Link, NavLink } from "react-router-dom";
 import { CartContext } from "../contexts/CartContext";
+import { AuthContext } from "../contexts/AuthProvider";
 
 export default function Navbar() {
+  // Various state variables to manage data for the Navbar component and its children components
   const [user, setUser] = useState();
   const [mobile, setMobile] = useState(false);
   const { cartItems } = useContext(CartContext);
+  const {isAuthenticated} = useContext(AuthContext)
 
+  // Making use of the useEffect React hook to fetch logged In or Registered users first name on initial rendering of the Navbar 
   useEffect(() => {
     if (localStorage.getItem("registeredUsers")) {
       const userDetails = JSON.parse(localStorage.getItem("registeredUsers"));
@@ -25,12 +29,6 @@ export default function Navbar() {
       setUser(fullName.split(" ")[0]);
     }
   }, []);
-
-  function handleLogOut() {
-    localStorage.removeItem("registeredUsers");
-    localStorage.removeItem("loggedInUsers");
-    setUser(null);
-  }
 
   return (
     <div>
@@ -50,7 +48,7 @@ export default function Navbar() {
           <input type="search" />
         </div>
         <div className={mobile ? `${styles.cartDiv} ${styles.mobile}` : `${styles.cartDiv}`}>
-          {user ? (
+          {isAuthenticated ? (
             `Hey, ${user} 😎`
           ) : (
             <NavLink to="/login">Login / Register</NavLink>
@@ -60,11 +58,10 @@ export default function Navbar() {
             {" "}
             <HiOutlineShoppingBag size={42} />({cartItems ? cartItems.length : 0})
           </NavLink>
-          {user && (
-            <p className={styles.price} onClick={handleLogOut}>
-              {" "}
-              Logout{" "}
-            </p>
+          {isAuthenticated && (
+            <Link className={styles.price} to='/dashboard'>
+              Dashboard
+            </Link>
           )}
         </div>
       </header>

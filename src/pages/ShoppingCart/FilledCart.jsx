@@ -1,20 +1,28 @@
 import React, { useContext, useState } from "react";
 import filled from "./filledcart.module.css";
 import { CartContext } from "../../contexts/CartContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const FilledCart = () => {
-  const { cartItems, setCartItems } = useContext(CartContext);
+  // State variables to manage data for the FilledCart component
   const [couponCode, setCouponCode] = useState("");
 
+  // Retrieving the cartItems from the CartContext using the useContext React hook
+  const { cartItems, setCartItems } = useContext(CartContext);
+
+  // handleQuantityChange to update the quantity of each cartItem
   const handleQuantityChange = (id, newQuantity) => {
+    // mapping through the cartItems to return an updated CartItems with the new quantity change 
     const updatedItems = cartItems.map((item) => {
+      // checking the id of the cartItem and matching it with the id of any existing cart Item
       if (item.id === id) {
         const updatedSubtotal = item.price * newQuantity;
         return { ...item, quantity: newQuantity, subtotal: updatedSubtotal };
       }
       return item;
     });
+    // updates the CartItems state variable with the updatedItems array returned after mapping through the CartItems array
     setCartItems(() => updatedItems);
   };
 
@@ -22,17 +30,24 @@ const FilledCart = () => {
     alert("OOPS!! Coupon Not Available Now. Kindly check back later");
   };
 
+  // clearCart function to clear the cartItems to be empty
   const clearCart = () => {
     setCartItems([]);
     localStorage.removeItem("cartItems");
   };
+
+  // calculating the total cost of items
   const subtotal = cartItems.reduce(
     (acc, item) => acc + Number(item.subtotal),
     0
   );
+
+  // removeItem function to remove an individual item from the carts
   const removeItem = (item) =>{
+    // filtering the cartItems to remove the item that matched the id of the item clicked
     const updatedCart = cartItems.filter((cartItem) => cartItem.id != item.id)
     setCartItems(updatedCart)
+    // setting the localStorage to have the current updated cartItems
     localStorage.setItem('cartItems', JSON.stringify(updatedCart));
   }
   
@@ -90,6 +105,7 @@ const FilledCart = () => {
   );
 };
 
+// Cartitems component for each item in the cart
 const CartItem = ({ item, handleQuantityChange, removeItem }) => {
   return (
     <tr>
@@ -124,6 +140,26 @@ const CartItem = ({ item, handleQuantityChange, removeItem }) => {
 };
 
 const CartTotals = ({ total }) => {
+  // Retrieving the setReference function to update the value of the reference state after a reference is generated
+  const {setCartReference} = useContext(CartContext);
+
+  //generateReference function to generate a reference for each order during the checkout phase
+  function generateReference() {
+    axios.get('https://pw-be-1.onrender.com/api/v1/orders/ref')
+        .then(res => {
+            const ref = res.data.data;
+            setCartReference(ref.reference); 
+            console.log(ref.reference); 
+            navigate('/checkout'); 
+        })
+        .catch(error => {
+            console.error("Error fetching reference:", error);
+        });
+  }
+
+  // assigning the useNavigate react-router-dom hook to the navigate variable 
+  const navigate = useNavigate()
+
   return (
     <div className={filled.cartTotals}>
       <h3>Cart Totals</h3>
@@ -132,7 +168,7 @@ const CartTotals = ({ total }) => {
           Total: <span>₦{Number(total.toFixed(2)).toLocaleString()}</span>
         </p>
       </div>
-      <Link to="/checkout">PROCEED TO CHECKOUT</Link>
+      <button to="/checkout" onClick={generateReference}>PROCEED TO CHECKOUT</button>
     </div>
   );
 };
