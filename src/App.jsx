@@ -20,19 +20,19 @@ function App() {
     <CartProvider>
       <BrowserRouter>
         <Routes>
-          <Route index element={<Homepage />} />
-
           <Route element={<ProductsLayout />}>
+            <Route index element={<Homepage />} />
+
             <Route path="/shop" element={<Shop />}>
               <Route index element={<ProductsList />} />
               <Route path="groceries" element={<GroceriesList />} />
               <Route path="skincare" element={<SkinCareList />} />
             </Route>
             <Route path="shop/:productId" element={<ProductDetails />} />
-          </Route>
 
-          <Route path="/cart" element={<ShoppingCart />} />
-          <Route path="/checkout" element={<Checkout />} />
+            <Route path="/cart" element={<ShoppingCart />} />
+            <Route path="/checkout" element={<Checkout />} />
+          </Route>
 
           <Route path="/login" element={<Login />} />
           <Route
@@ -43,9 +43,8 @@ function App() {
               </PrivateRoutes>
             }
           />
-        <Route path="/*" element={<Errorpage />}/>
+          <Route path="/*" element={<Errorpage />} />
         </Routes>
-
       </BrowserRouter>
     </CartProvider>
   );

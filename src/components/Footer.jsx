@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../assets/purpleworldLogo.png";
 import styles from "./Footer.module.css";
+import { AuthContext } from "../contexts/AuthProvider";
 
-export default function Footer({register}) {
+export default function Footer() {
+  const {isAuthenticated} = useContext(AuthContext)
   
   return (
     // Footer Component styled with footer.module.css file
@@ -40,9 +42,18 @@ export default function Footer({register}) {
             <Link to="/shop">
               <li>Shop</li>
             </Link>
-            <Link to="/login">
-              <li>Login/Register</li>
-            </Link>
+
+            {
+              isAuthenticated ? (
+              <Link to="/dashboard">
+                <li>Dashboard</li>
+              </Link>
+              ) : (
+                <Link to="/login">
+                  <li>Login/Register</li>
+                </Link>
+              )
+            }
 
             <Link to="/cart">
               <li> Cart </li>

@@ -114,7 +114,7 @@ const Checkout = () => {
 
         // Making POST request to send the Order made by the user to the database 
         axios.post(
-          'https://pw-be-1.onrender.com/api/v1/orders/new',
+          'https://purpleworld-be-p5y6.onrender.com/api/v1/orders/new',
           {
             reference: cartReference,
             items: cartItems.map(item => ({
@@ -311,7 +311,7 @@ const Checkout = () => {
                   required
                 >
                   <option value="">Select a state</option>
-                  {statesInNigeria.map((state, index) => (
+                  {statesInAustralia.map((state, index) => (
                     <option key={index} value={state}>
                       {state}
                     </option>

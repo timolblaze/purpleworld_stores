@@ -13,7 +13,8 @@ export default function FormComponent() {
   const [phoneNumber, setPhoneNumber] = useState("");
   
   // Retrieving the setisAuthenticated state setting function from the AuthContext using the React useContext hook 
-  const {setIsAuthenticated} = useContext(AuthContext);
+  const {isAuthenticated,setIsAuthenticated} = useContext(AuthContext);
+
   // Assigning the navigate variable to the useNavigate React-router-dom hook
   const navigate = useNavigate();
 
@@ -21,6 +22,11 @@ export default function FormComponent() {
   function handleSignUp(e) {
     // prevents the page from reloading as it's the default behaviour of the submit button 
     e.preventDefault();
+    if(isAuthenticated){
+      alert('User already. Logout before initiating user registration')
+      return
+    }
+
     // POST request using axios to send a Register request to the registration endpoint 
     axios
       .post("https://pw-be-1.onrender.com/api/v1/auth/register", {
@@ -52,6 +58,10 @@ export default function FormComponent() {
   function handleLogin(e) {
     // prevents the page from reloading as it's the default behaviour of the submit button 
     e.preventDefault();
+    if(isAuthenticated){
+      alert('User already logged In. Logout before initiating user log in')
+      return
+    }
 
     // POST request using axios to send a Login request to the login endpoint 
     axios

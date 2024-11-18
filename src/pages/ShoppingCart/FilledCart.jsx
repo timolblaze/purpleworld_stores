@@ -149,7 +149,6 @@ const CartTotals = ({ total }) => {
         .then(res => {
             const ref = res.data.data;
             setCartReference(ref.reference); 
-            console.log(ref.reference); 
             navigate('/checkout'); 
         })
         .catch(error => {
