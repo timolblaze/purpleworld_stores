@@ -28,7 +28,7 @@ export default function Dashboard() {
     if (accessToken) {
       axios
         .get(
-          `https://purpleworld-be-p5y6.onrender.com/api/v1/orders?user=${userID}`,
+          `https://pw-be-1.onrender.com/api/v1/orders?user=${userID}`,
           {
             headers: {
               Authorization: `Bearer ${accessToken}`,
