@@ -86,7 +86,7 @@ export default function Dashboard() {
               <tr>
                 <th>ORDER ID</th>
                 <th>ITEMS</th>
-                <th>QUANTITY</th>
+                <th>COST</th>
                 <th>TOTAL</th>
               </tr>
             </thead>
