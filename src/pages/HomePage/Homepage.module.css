@@ -3,7 +3,7 @@
     padding: 5rem 10rem;
     height: 90vh;
     max-height: 1000px;
-    background-color: var(--purple);
+    background: url('../../assets/websize.png') center center/cover no-repeat;
     z-index: 100;
 }
 .hero::after{
