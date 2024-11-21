@@ -30,8 +30,11 @@ export default function Homepage() {
 
   return (
     <>
+    {/* navbar component */}
       <Navbar />
       <section className={styles.hero}>
+
+        {/* Banner section */}
         <div className={styles.heroDiv}>
           <h1>Welcome to PurpleWorld Stores</h1>
           <h4>...home of quality Groceries and Skin Care </h4>
