@@ -55,6 +55,7 @@ export default function Navbar() {
           ) : (
             <NavLink to="/login">Login / Register</NavLink>
           )}
+          <NavLink to="/">Home</NavLink>
           <NavLink to="/shop">Shop</NavLink>
           <NavLink to="/cart">
             {" "}
