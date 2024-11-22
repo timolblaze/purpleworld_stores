@@ -43,6 +43,7 @@ export default function Homepage() {
       </section>
 
       <SalesComponent heading="New Arrivals">
+        {/* Create Product Card for new product from the array of products */}
         {newProducts ?
           newProducts.map((product) => {
             return(
